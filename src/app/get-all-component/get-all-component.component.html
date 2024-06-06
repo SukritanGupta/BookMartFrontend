@@ -1,0 +1,39 @@
+<div class="container">
+    <div *ngIf="messageOpen" class="alert alert-{{messageType}} alert-dismissible fade show" role="alert">
+        <strong>{{message}} </strong>
+        <button (click)="removeMessage()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h1>Book List</h1>
+    <!-- Here I place search box -->
+    <div id="search" class="d-flex justify-content-center m-5 ">
+        <input type="text" [(ngModel)]="searchText" class="form-control p-3" placeholder="Search Book">
+        <span class="input-group-text"><i class="fas fa-search"></i></span>
+
+    </div>
+    <div class="container w-100 mb-3 displayList">
+        <!-- List of books present here -->
+        <div class="row justify-content-center  align-items-center m-3" style="background-color: rgb(232, 225, 225);">
+            <div class="col-3 p-3">BookName</div>
+            <div class="col-2">Price (Rupee)</div>
+            <div class="col-3"> AuthorName</div>
+            <div class="col-2 btn">Update Book</div>
+            <div class="col-2 btn">Delete Book</div>
+        </div>
+        <p *ngIf="bookList.length==0 || ans.length==0" style="text-align: center; color:red;">Loading .... {{loadingMessage}}</p>
+
+        <div *ngFor="let i of ans | paginate: { itemsPerPage: pageSize, currentPage: page }" class="row row1 justify-content-center  align-items-center m-3">
+
+            <div class="col-3 p-3">{{i.bookName}}</div>
+            <div class="col-2">{{i.price}}</div>
+            <div class="col-3">by {{i.bookAuthorName}}</div>
+            <div class="col-2 btn" (click)="updateBook(i.bookId)">Update Book</div>
+            <div class="col-2 btn" (click)="deleteBook(i.bookId)">Delete Book</div>
+        </div>
+        <div class="m-4" style="text-align: center;">
+            <pagination-controls (pageChange)="page = $event"></pagination-controls>
+        </div>
+
+
+
+    </div>
+</div>

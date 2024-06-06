@@ -1,0 +1,35 @@
+$backGroundColor:#373434;
+$textColor:#fff;
+$height:20vh;
+#footerDiv {
+    background-color: $backGroundColor;
+    color: $textColor;
+    text-align: center;
+    #topBar {
+        height: $height;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        div {
+            margin: 2vw;
+        }
+        li {
+            list-style: none;
+            padding: 1px;
+        }
+        a {
+            text-decoration: none;
+            color: $textColor;
+        }
+    }
+}
+
+@media screen and (max-width:480px) {
+    #footerDiv {
+        #topBar {
+            #d2 {
+                font-size: 10px;
+            }
+        }
+    }
+}

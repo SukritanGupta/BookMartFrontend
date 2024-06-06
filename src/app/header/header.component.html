@@ -1,0 +1,13 @@
+<div id="headerDiv">
+    <h3>Book Mart</h3>
+    <nav>
+        <ul id="headerList" [ngClass]="toggleShow?'show':'hide'">
+            <li><a routerLink="/">Home</a> </li>
+            <li><a routerLink="/getAllBooks">GetAllBooks</a></li>
+        </ul>
+    </nav>
+    <button id="toggleButton">
+        <span id="span2header" (click)="openHeader()" *ngIf="ismenuItem"> <i class="fa-solid fa-bars"></i></span>
+        <span id="span2header" (click)="closeHeader()" *ngIf="iscloseItem"> <i class="fa-solid fa-xmark"></i></span>
+    </button>
+</div>

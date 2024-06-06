@@ -1,0 +1,31 @@
+<div class="container">
+    <div *ngIf="messageOpen" class="alert alert-{{messageType}} alert-dismissible fade show" role="alert">
+        <strong>{{message}} </strong>
+        <button (click)="removeMessage()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h3>Update Book Details</h3>
+    <form action="" (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="form-group m-3 col-12 col-lg-6">
+            <label for="" class="required"> Book Name :</label>
+            <input type="text" class="form-control " [(ngModel)]="bookName" name="bookName" value={{bookName}} required>
+            <div *ngIf="f.submitted && !f.controls.bookName?.valid && invalid" class="text-danger">
+                BookName cause issue
+            </div>
+        </div>
+        <div class="form-group m-3 col-12 col-lg-6">
+            <label for="" class="required"> Authour Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="bookAuthorName" name="authorName" value={{bookAuthorName}} required>
+            <div *ngIf="f.submitted && !f.controls.authorName?.valid && invalid" class="text-danger">
+                AuthorName field cause issue.
+            </div>
+        </div>
+        <div class="form-group m-3 col-12 col-lg-6">
+            <label for="" class="required">Price:</label>
+            <input type="text" class="form-control" [(ngModel)]="bookPrice" name="price" value={{bookPrice}} required>
+            <div *ngIf="f.submitted && !f.controls.price?.valid && invalid" class="text-danger">
+                Price field cause issue.
+            </div>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary m-3" id="button">
+    </form>
+</div>
