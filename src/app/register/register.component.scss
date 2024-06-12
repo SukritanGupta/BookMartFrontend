@@ -1,13 +1,18 @@
 #firstContainer {
     #registerDiv {
-        height: 80vh;
+        height: 70vh;
         // border: 1px solid #000;
         #registerForm {
+            background-color: #f7eded;
             border: 1px solid #000;
             box-shadow: 15px 15px 80px rgba(0, 0, 0, 0.5);
             height: 60vh;
             #inputDiv {
                 height: 40vh;
+            }
+            a {
+                cursor: pointer;
+                color: blue;
             }
         }
     }

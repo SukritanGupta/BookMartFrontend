@@ -1,0 +1,10 @@
+$height:70vh;
+main {
+    min-height: $height;
+    background-color: rgba(249, 245, 245, 0.959);
+}
+
+header {
+    position: sticky;
+    top: 0;
+}

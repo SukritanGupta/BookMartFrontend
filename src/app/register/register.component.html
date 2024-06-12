@@ -1,15 +1,22 @@
-<div class="container" id="firstContainer">
-    <!-- Here I use template driven approach to create login form -->
-    <div class="row justify-content-center align-content-center" id="registerDiv">
-        <form (ngSubmit)="onSubmit()" class="col-md-3 col-10" id="registerForm">
-            <h3 style="text-align: center;" class="mt-4">Register </h3>
-            <div id="inputDiv" class="align-content-center">
-                <input type="text" class="form-control mb-4" name="username" [(ngModel)]="username" placeholder="UserName">
-                <input type="text" class="form-control mb-4" name="password" [(ngModel)]="password" placeholder="Password">
-                <input type="submit" value="Register" class="form-control btn btn-primary">
-            </div>
-
-        </form>
-
+<div id="mainDiv">
+    <h2 class="p-3"></h2>
+    <div class="d-flex justify-content-end">
+        <div *ngIf="messageOpen" class="alert  alert-dismissible fade show w-50" role="alert">
+            <p style="text-align: center;"><strong>{{message}} </strong></p>
+            <button (click)="removeMessage()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     </div>
-</div>
+    <div class="container" id="firstContainer">
+        <!-- Here I use template driven approach to create login form -->
+        <div class="row justify-content-center align-content-center" id="registerDiv">
+            <form (ngSubmit)="onSubmit()" class="col-md-3 col-10" id="registerForm" #f="ngForm">
+                <h3 style="text-align: center;" class="mt-4">Register </h3>
+                <div id="inputDiv" class="align-content-center">
+                    <input type="text" class="form-control mb-4" name="username" [(ngModel)]="username" placeholder="UserName" required>
+                    <input type="password" class="form-control mb-4" name="password" [(ngModel)]="password" placeholder="Password" required>
+                    <input type="submit" [disabled]="!f.valid" value="Register" class="form-control btn btn-primary mb-3">
+                    <span><a (click)="login()"> Already have account?</a> </span>
+                </div>
+            </form>
+        </div>
+    </div>

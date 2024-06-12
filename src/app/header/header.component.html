@@ -2,8 +2,14 @@
     <h3>Book Mart</h3>
     <nav>
         <ul id="headerList" [ngClass]="toggleShow?'show':'hide'">
-            <li><a routerLink="/">Home</a> </li>
+            <li><a routerLink="/createComponent">Home</a> </li>
             <li><a routerLink="/getAllBooks">GetAllBooks</a></li>
+            <li style="position: absolute; right: 0;" *ngIf="!isLoginUser">
+                <i class="fas fa-sign-in-alt"></i> <a (click)="login()">LogIn</a>
+            </li>
+            <li style="position: absolute; right: 0;" *ngIf="isLoginUser">
+                <i class="fas fa-sign-out-alt"></i> <a (click)="logout()">Logout</a>
+            </li>
         </ul>
     </nav>
     <button id="toggleButton">

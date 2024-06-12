@@ -2,20 +2,40 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { GetJwtTokenServiceService } from '../get-jwt-token-service.service';
+import { CanComponentDeactivate, CanDeactivateServiceService } from '../can-deactivate-service.service';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, MaybeAsync, GuardResult } from '@angular/router';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-create-component',
   templateUrl: './create-component.component.html',
   styleUrl: './create-component.component.scss'
 })
-export class CreateComponentComponent{
+export class CreateComponentComponent implements CanComponentDeactivate{
 @ViewChild("f") formData:NgForm;
 messageOpen:boolean=false;
 messageType:string='danger';
 message:string="";
 noError:boolean=true;
 invalid:boolean=false;
-constructor(private http:HttpClient){
+constructor(private http:HttpClient,private can:CanDeactivateServiceService){
 
+}
+
+ canDeactivate(): Observable<boolean> |Promise<boolean> |boolean {
+  // Here I write the logic like if user start writing the form then it returns false , else return true
+  if(this.formData.dirty){
+    this.can.count.update(state=>true);
+    // this.can.notMove.next(true);
+    // console.log("now"+this.can.notMove.getValue());
+   if(confirm('You have unsaved changes! Do you really want to leave?')==true){
+    // this.can.notMove.next(false);
+    this.can.count.update(state=>false);
+    return true;
+   }   
+  //  this.can.notMove=true;
+   return false;
+  } 
+   return true;
 }
 onSubmit(){
   // TODO --> need to recheck the concept
@@ -50,6 +70,8 @@ if(this.formData.value.bookName==null){
     this.messageType='success';
     this.message="book is created successfully";
     this.formData.reset();
+    this.can.count.update(state=>false);
+    // this.can.notMove.next(false);
    },error=>{
     console.log("Error comes",error['error']['message']);
         this.messageOpen=true;
