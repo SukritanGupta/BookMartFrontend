@@ -10,7 +10,7 @@
         <span class="input-group-text"><i class="fas fa-search"></i></span>
 
     </div>
-    <div class="container w-100 mb-3 displayList">
+    <div class="container w-100 mb-4 displayList">
         <!-- List of books present here -->
         <div class="row justify-content-center  align-items-center m-3" style="background-color: rgb(232, 225, 225);">
             <div class="col-3 p-3">BookName</div>
@@ -20,9 +20,7 @@
             <div class="col-2 btn">Delete Book</div>
         </div>
         <p *ngIf="bookList.length==0 || ans.length==0" style="text-align: center; color:red;">Loading .... {{loadingMessage}}</p>
-
         <div *ngFor="let i of ans | paginate: { itemsPerPage: pageSize, currentPage: page }" class="row row1 justify-content-center  align-items-center m-3">
-
             <div class="col-3 p-3">{{i.bookName}}</div>
             <div class="col-2">{{i.price}}</div>
             <div class="col-3">by {{i.bookAuthorName}}</div>
@@ -32,8 +30,6 @@
         <div class="m-4" style="text-align: center;">
             <pagination-controls (pageChange)="page = $event"></pagination-controls>
         </div>
-
-
 
     </div>
 </div>

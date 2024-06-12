@@ -20,7 +20,7 @@ export class InterceptorsService implements HttpInterceptor{
   }
 intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     console.log("Intercepting the request ");
-    if(req.url=="http://localhost:8081/login"){
+    if(req.url=="http://localhost:8081/login" || req.url=="http://localhost:8081/register"){
       console.log("call for interepting the call for login");
       return next.handle(req);
       

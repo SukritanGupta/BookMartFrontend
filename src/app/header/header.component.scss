@@ -12,11 +12,18 @@ $backGroundColor:#302e2e;
     #headerList {
         display: flex;
         list-style: none;
+        .hideClass {
+            display: none;
+        }
+        .noHide {
+            display: block;
+        }
         li {
             padding: 1vw;
             a {
                 text-decoration: none;
                 color: $textColor;
+                cursor: pointer;
             }
         }
     }
