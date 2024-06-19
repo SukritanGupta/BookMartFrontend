@@ -1,2 +1,2 @@
 npm install ngx-pagination --save
- 
+docker run -d -p 4500:80 --name containerName imageName

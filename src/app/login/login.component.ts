@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivateRouteServiceService } from '../activate-route-service.service';
 import { HttpClient } from '@angular/common/http';
+import { UserDetailsService } from '../user-details.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent {
   messageType:string="danger"
   messageOpen:boolean=false;
   message:string="";
-  constructor(private router: Router,private activateService:ActivateRouteServiceService,private http:HttpClient) { }
+  constructor( private userService:UserDetailsService,  private router: Router,private activateService:ActivateRouteServiceService,private http:HttpClient) { }
     onSubmit(){
         console.log(this.username);
         console.log(this.password);
@@ -33,6 +34,9 @@ export class LoginComponent {
       console.log(this.tokenData);
   this.http.post("http://localhost:8081/login",this.tokenData,{responseType: 'json'}).subscribe(response=>{
     this.login=true;
+    this.userService.userName.next(this.username);
+    this.userService.password.next(this.password);
+
     this.router.navigate(['/createComponent']);
     this.activateService.isLogin=true;
     sessionStorage.setItem("login",'true');

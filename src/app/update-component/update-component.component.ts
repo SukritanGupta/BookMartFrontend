@@ -58,7 +58,18 @@ export class UpdateComponentComponent implements OnInit {
           this.messageOpen=true;
           this.invalid=true;
           this.messageType='danger'
-      this.message=error['error']['message'];
+         
+         
+            error=(error['error']['message']).split(":");
+            if(error.length==2){
+              this.message=error[1];
+            }
+            else{
+              this.message=error[0]
+            }
+          
+         
+         
      })
   }
   removeMessage(){

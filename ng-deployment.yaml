@@ -1,0 +1,37 @@
+apiVersion: apps/v1 # Kubernetes API version
+kind: Deployment  # Kubernetes resource kind we are creating
+metadata:
+  name: angular-deploy4
+  namespace: suk6
+spec:
+  selector:
+    matchLabels:
+      app: angular
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: angular
+    spec:
+      containers:
+      - name: angular
+        image: dockfront1img:latest # Image that will be used to containers in the cluster
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80 # The port that the container is running on in the cluster
+---
+
+kind: Service  # Kubernetes API version
+apiVersion: v1 # Kubernetes resource kind we are creating
+metadata:
+  name: angular-service-concept4
+  namespace: suk6
+spec:
+  selector:
+    app: angular
+  ports:
+  - protocol: TCP
+    port: 80   # The port that the service is running on in the cluster
+    targetPort: 80   # The port exposed by the service
+    nodePort: 32760
+  type: NodePort     # type of the service.
